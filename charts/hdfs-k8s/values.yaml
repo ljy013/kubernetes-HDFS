@@ -46,7 +46,7 @@ hdfs-journalnode-k8s:
     #   matchLabels:
     #     volume-type: hdfs-ssd
     accessMode: ReadWriteOnce
-    size: 20Gi
+    size: 20Mi
 
   ## Node labels and tolerations for pod assignment
   nodeSelector: {}
@@ -88,13 +88,14 @@ hdfs-namenode-k8s:
 
     accessMode: ReadWriteOnce
 
-    size: 100Gi
+    size: 100Mi
 
   ## Whether or not to use hostNetwork in namenode pods. Disabling this will break
   ## data locality as namenode will see pod virtual IPs and fails to equate them with
   ## cluster node physical IPs associated with data nodes.
   ## We currently disable this only for CI on minikube.
-  hostNetworkEnabled: true
+  #hostNetworkEnabled: true
+  hostNetworkEnabled: false
 
   ## Node labels and tolerations for pod assignment
   nodeSelector: {}
@@ -146,7 +147,7 @@ hdfs-krb5-k8s:
 
     accessMode: ReadWriteOnce
 
-    size: 20Gi
+    size: 20Mi
 
   ## We use a 3rd party image built from https://github.com/gcavalcante8808/docker-krb5-server.
   ## TODO: The pod currently prints out the admin account in plain text.
@@ -203,7 +204,8 @@ global:
   journalnodeQuorumSize: 3
 
   ## Whether or not to enable default affinity setting.
-  defaultAffinityEnabled: true
+  #defaultAffinityEnabled: true
+  defaultAffinityEnabled: false
 
   ## Whether or not Kerberos support is enabled.
   kerberosEnabled: false
